@@ -5,6 +5,7 @@ from aiogram.fsm.strategy import FSMStrategy
 
 from src.config import conf
 from src.bot.handlers import routers
+from src.bot.middlewares import DatabaseMiddleware
 
 
 def get_dispatcher(
@@ -21,5 +22,8 @@ def get_dispatcher(
     # Register routers
     for router in routers:
         dp.include_router(router)
+
+    # Register middlewares
+    dp.update.middleware(DatabaseMiddleware())
 
     return dp
