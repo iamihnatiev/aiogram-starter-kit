@@ -11,11 +11,11 @@ load_dotenv()
 
 @dataclass
 class DatabaseConfig:
-    username: str = getenv('POSTGRES_USER', 'root')
-    password: str | None = getenv('POSTGRES_PASSWORD', None)
-    host: str = getenv('POSTGRES_HOST', 'localhost')
-    port: int = int(getenv('POSTGRES_PORT', 5432))
-    database: str = getenv('POSTGRES_NAME', 'db')
+    username: str = getenv(key='POSTGRES_USER', default='postgres')
+    password: str | None = getenv(key='POSTGRES_PASSWORD', default='postgres')
+    host: str = getenv(key='POSTGRES_HOST', default='postgres')
+    port: int = int(getenv(key='POSTGRES_PORT', default=5432))
+    database: str = getenv(key='POSTGRES_NAME')
 
     database_system: str = 'postgresql'
     driver: str = 'asyncpg'

@@ -8,8 +8,4 @@
 __pycache__/
 
 # Environments
-.venv/
-.env/
-
-.venv
 .env

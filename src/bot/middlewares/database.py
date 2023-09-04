@@ -1,5 +1,5 @@
 from collections.abc import Callable, Awaitable
-from typing import Any, Dict, Union
+from typing import Any, Dict
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -14,7 +14,7 @@ class DatabaseMiddleware(BaseMiddleware):
     async def __call__(
         self,
         handler: Callable[[Message, Dict[str, Any]], Awaitable[Any]],
-        event: Union[Message, CallbackQuery],
+        event: Message | CallbackQuery,
         data: DatabaseDTO,
     ) -> Any:
         async with AsyncSession(bind=data['engine']) as session:
