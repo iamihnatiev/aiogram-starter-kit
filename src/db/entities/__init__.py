@@ -1,7 +1,7 @@
-from .base import BaseModel
+from .base import BaseEntity
 from .user import User
 
 __all__ = (
-    'BaseModel',
+    'BaseEntity',
     'User',
 )

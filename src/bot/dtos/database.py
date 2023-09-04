@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 from src.db.database import Database
 
 
-class TransferData(TypedDict):
+class DatabaseDTO(TypedDict):
     engine: AsyncEngine
 
     db: Database

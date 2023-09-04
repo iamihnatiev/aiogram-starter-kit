@@ -1,6 +1,14 @@
-from sqlalchemy.ext.asyncio import AsyncSession
+from typing import Union
+
+from sqlalchemy.engine.url import URL
+from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine
 
 from .repositories import UserRepository
+
+
+def get_engine(url: Union[str, URL]) -> AsyncEngine:
+    return create_async_engine(url=url, echo=True)
 
 
 class Database:

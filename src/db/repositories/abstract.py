@@ -2,9 +2,9 @@ from typing import TypeVar, Generic, Type, Optional
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.db.models import BaseModel
+from src.db.entities import BaseEntity
 
-TEntity = TypeVar('TEntity', bound=BaseModel)
+TEntity = TypeVar('TEntity', bound=BaseEntity)
 
 
 class Repository(Generic[TEntity]):
