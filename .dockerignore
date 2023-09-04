@@ -1,0 +1,16 @@
+# JetBrains IDEs
+.idea/
+
+# VisualStudioCode
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Environments
+.env
+.env.example
+
+# Project Files
+.editorconfig
+.gitignore
