@@ -12,7 +12,6 @@ ENV POETRY_CACHE_DIR=/opt/.cache
 # Create a stage for Poetry installation
 FROM python-base as poetry-base
 
-
 # Install Poetry in a virtual environment dedicated to it
 RUN python3 -m venv $POETRY_VENV \
     && $POETRY_VENV/bin/pip install -U pip setuptools \
