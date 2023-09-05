@@ -13,6 +13,6 @@ start_router = Router(name='start')
 async def start_handler(message: Message, db: Database):
     user_service = UserService(db=db)
 
-    user: UserDTO = await user_service.get_user(user_id=message.from_user.id)
+    # user: UserDTO = await user_service.get_user(user_id=message.from_user.id)
 
-    await message.answer(text=f"Hello, {html.bold(user['first_name'])}!")
+    await message.answer(text=f"Hello, {html.bold(message.from_user.first_name)}!")

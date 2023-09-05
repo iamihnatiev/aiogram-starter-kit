@@ -6,11 +6,9 @@ authors = [
   "Serhii Ihnatiev <141933729+iamihnatiev@users.noreply.github.com>",
 ]
 license = "MIT"
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-python-dotenv = "^1.0.0"
 aiogram = "^3.0.0"
 sqlalchemy = "^2.0.20"
 asyncpg = "^0.28.0"
