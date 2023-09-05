@@ -1,3 +1,4 @@
+import logging
 import asyncio
 
 from aiogram import Bot
@@ -24,4 +25,5 @@ async def start_bot():
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=conf.logging_level)
     asyncio.run(start_bot())

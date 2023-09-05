@@ -1,3 +1,5 @@
+import logging
+
 from os import getenv
 from dataclasses import dataclass
 
@@ -33,6 +35,8 @@ class BotConfig:
 
 @dataclass
 class Config:
+    logging_level = int(getenv('LOGGING_LEVEL', logging.INFO))
+
     db = DatabaseConfig()
     bot = BotConfig()
 
