@@ -5,6 +5,7 @@ description = "A Versatile and Functional aiogram 3.x Bot Template."
 authors = [
   "Serhii Ihnatiev <141933729+iamihnatiev@users.noreply.github.com>",
 ]
+license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
