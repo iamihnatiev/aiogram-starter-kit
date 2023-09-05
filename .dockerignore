@@ -7,6 +7,9 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 
+# Distribution / packaging
+docker/
+
 # Environments
 .env
 .env.example
