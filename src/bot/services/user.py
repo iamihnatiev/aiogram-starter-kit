@@ -11,4 +11,4 @@ class UserService:
 
     async def get_user(self, user_id: int) -> Optional[UserDTO]:
         # TODO
-        return await self.db.user.find(ident=user_id)
+        return await self.db.user.get(ident=user_id)
