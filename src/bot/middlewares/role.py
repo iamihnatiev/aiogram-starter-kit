@@ -1,5 +1,5 @@
 from collections.abc import Callable, Awaitable
-from typing import Any, Dict, Union
+from typing import Any, Dict
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
