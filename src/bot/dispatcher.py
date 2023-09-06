@@ -1,11 +1,18 @@
+from redis.asyncio.client import Redis
+
 from aiogram import Dispatcher
 from aiogram.fsm.storage.base import BaseStorage, BaseEventIsolation
 from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.fsm.strategy import FSMStrategy
 
 from src.config import conf
 from src.bot.handlers import routers
 from src.bot.middlewares import DatabaseMiddleware
+
+
+def get_redis_storage(redis: Redis) -> RedisStorage:
+    return RedisStorage(redis=redis, state_ttl=conf.redis.state_ttl, data_ttl=conf.redis.data_ttl)
 
 
 def get_dispatcher(
