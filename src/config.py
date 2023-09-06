@@ -8,8 +8,8 @@ from sqlalchemy.engine import URL
 
 @dataclass
 class DatabaseConfig:
-    username: str = getenv(key='POSTGRES_USER', default='postgres')
-    password: str | None = getenv(key='POSTGRES_PASSWORD', default='postgres')
+    username: str = getenv(key='POSTGRES_USER')
+    password: str | None = getenv(key='POSTGRES_PASSWORD', default=None)
     host: str = getenv(key='POSTGRES_HOST', default='postgres')
     port: int = int(getenv(key='POSTGRES_PORT', default=5432))
     database: str = getenv(key='POSTGRES_DATABASE')
@@ -30,14 +30,14 @@ class DatabaseConfig:
 
 @dataclass
 class RedisConfig:
-    username: str = getenv(key='REDIS_USER', default='redis')
-    password: str | None = getenv(key='REDIS_PASSWORD', default='redis')
+    username: str = getenv(key='REDIS_USER')
+    password: str = getenv(key='REDIS_PASSWORD')
     host: str = getenv(key='REDIS_HOST', default='redis')
     port: int = int(getenv(key='REDIS_PORT', default=6379))
     db: int = int(getenv(key='REDIS_DB', default=1))
 
-    state_ttl: int = int(getenv(key='REDIS_STATE_TTL', default=0))
-    data_ttl: int = int(getenv(key='REDIS_DATA_TTL', default=0))
+    state_ttl: int | None = getenv(key='REDIS_STATE_TTL', default=None)
+    data_ttl: int | None = getenv(key='REDIS_DATA_TTL', default=None)
 
 
 @dataclass
