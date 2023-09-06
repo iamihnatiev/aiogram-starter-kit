@@ -3,6 +3,7 @@ import logging
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.db.entities import User
+from src.bot.enums import Role
 from .abstract import Repository
 
 

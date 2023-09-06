@@ -17,7 +17,7 @@ class DatabaseConfig:
     database_system: str = 'postgresql'
     driver: str = 'asyncpg'
 
-    def build_connection_url(self) -> URL:
+    def build_connection_url(self) -> str:
         return URL.create(
             drivername=f"{self.database_system}+{self.driver}",
             username=self.username,
@@ -25,7 +25,7 @@ class DatabaseConfig:
             host=self.host,
             port=self.port,
             database=self.database,
-        )
+        ).render_as_string()
 
 
 @dataclass

@@ -6,7 +6,7 @@ from .base import BaseEntity
 
 
 class User(BaseEntity):
-    __tablename__ = 'user_account'
+    __tablename__ = 'users'
 
     user_id: Mapped[int] = mapped_column(
         BigInteger, unique=True, nullable=False,
