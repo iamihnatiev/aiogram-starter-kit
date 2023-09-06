@@ -4,7 +4,7 @@ from aiogram.types import Message
 
 from src.db import Database
 from src.bot.services import UserService
-from src.bot.dtos import UserDTO
+from src.bot.dtos.user import UserDTO
 
 start_router = Router(name='start')
 

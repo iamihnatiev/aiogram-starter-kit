@@ -2,7 +2,7 @@ from typing import Optional
 from dataclasses import dataclass
 
 from src.db import Database
-from src.bot.dtos import UserDTO
+from src.bot.dtos.user import UserDTO
 
 
 @dataclass

@@ -12,7 +12,11 @@ class User(BaseEntity):
         BigInteger, unique=True, nullable=False,
     )
 
-    user_name: Mapped[str] = mapped_column(
+    phone_number: Mapped[str] = mapped_column(
+        Text, unique=True, nullable=True,
+    )
+
+    username: Mapped[str] = mapped_column(
         Text, unique=False, nullable=True,
     )
 
@@ -20,7 +24,11 @@ class User(BaseEntity):
         Text, unique=False, nullable=True,
     )
 
-    second_name: Mapped[str] = mapped_column(
+    last_name: Mapped[str] = mapped_column(
+        Text, unique=False, nullable=True,
+    )
+
+    middle_name: Mapped[str] = mapped_column(
         Text, unique=False, nullable=True,
     )
 
