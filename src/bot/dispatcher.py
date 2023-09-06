@@ -8,7 +8,7 @@ from aiogram.fsm.strategy import FSMStrategy
 
 from src.config import conf
 from src.bot.handlers import routers
-from src.bot.middlewares import DatabaseMiddleware
+from src.bot.middlewares import DatabaseMiddleware, RoleMiddleware
 
 
 def get_redis_storage(redis: Redis) -> RedisStorage:
@@ -32,5 +32,6 @@ def get_dispatcher(
 
     # Register middlewares
     dp.update.middleware(DatabaseMiddleware())
+    dp.update.middleware(RoleMiddleware())
 
     return dp
