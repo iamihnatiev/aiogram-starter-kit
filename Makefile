@@ -1,7 +1,7 @@
 # Run Alembic to generate a new migration script
 .PHONY: migration
 migration:
-	. .env && poetry run alembic revision --autogenerate -m "$(m)"
+	. .env && poetry run alembic revision --autogenerate -m "$(NAME)"
 
 # Run Alembic to apply database migrations
 .PHONY: migrate-up
@@ -16,9 +16,9 @@ migrate-down:
 # Use Docker Compose to start the project
 .PHONY: project-start
 project-start:
-	docker-compose up --force-recreate
+	docker-compose up --force-recreate $(OPTIONS)
 
 # Use Docker Compose to stop the project
 .PHONY: project-stop
 project-stop:
-	docker-compose down --remove-orphans
+	docker-compose down --remove-orphans $(OPTIONS)
