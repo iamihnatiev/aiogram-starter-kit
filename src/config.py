@@ -30,11 +30,10 @@ class DatabaseConfig:
 
 @dataclass
 class RedisConfig:
-    username: str = getenv(key='REDIS_USER')
     password: str = getenv(key='REDIS_PASSWORD')
     host: str = getenv(key='REDIS_HOST', default='redis')
     port: int = int(getenv(key='REDIS_PORT', default=6379))
-    db: int = int(getenv(key='REDIS_DB', default=1))
+    db: int = int(getenv(key='REDIS_DATABASE', default=1))
 
     state_ttl: int | None = getenv(key='REDIS_STATE_TTL', default=None)
     data_ttl: int | None = getenv(key='REDIS_DATA_TTL', default=None)

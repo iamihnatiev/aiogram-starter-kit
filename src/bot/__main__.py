@@ -17,7 +17,6 @@ async def start_bot():
     bot = Bot(token=conf.bot.token, parse_mode=ParseMode.HTML)
 
     storage = get_redis_storage(redis=Redis(
-        username=conf.redis.username,
         password=conf.redis.password,
         host=conf.redis.host,
         port=conf.redis.port,

@@ -1,5 +1,4 @@
-import logging
-
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.db.entities import User
@@ -13,5 +12,5 @@ class UserRepository(Repository[User]):
 
     async def get_role(self, user_id: int) -> Role:
         return await self.session.scalar(
-            select(User.role).where(User.user_id == user_id).one()
+            select(User.role).where(User.user_id == user_id).limit(1)
         )

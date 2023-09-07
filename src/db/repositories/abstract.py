@@ -37,7 +37,7 @@ class Repository(Generic[TEntity]):
         return (await self.session.scalars(statement)).all()
 
     async def add(self, record: TEntity) -> TEntity:
-        await self.session.add(record)
+        self.session.add(record)
         await self.session.flush()
 
         return record
