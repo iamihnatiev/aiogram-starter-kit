@@ -6,7 +6,7 @@ from .repositories import UserRepository
 
 
 def get_engine(url: str | URL) -> AsyncEngine:
-    return create_async_engine(url=url, echo=True)
+    return create_async_engine(url=url, echo=True, pool_pre_ping=True)
 
 
 class Database:
