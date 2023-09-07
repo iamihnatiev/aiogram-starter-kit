@@ -25,7 +25,7 @@ class DatabaseConfig:
             host=self.host,
             port=self.port,
             database=self.database,
-        ).render_as_string()
+        ).render_as_string(hide_password=False)  # Required for Alembic
 
 
 @dataclass

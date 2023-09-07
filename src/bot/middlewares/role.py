@@ -17,6 +17,4 @@ class RoleMiddleware(BaseMiddleware):
     ) -> Any:
         db: Database = data['db']
 
-        data['role'] = await db.user.get_role(user_id=event.from_user.id)
-
         return await handler(event, data)

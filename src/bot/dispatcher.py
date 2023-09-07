@@ -31,7 +31,7 @@ def get_dispatcher(
         dp.include_router(router)
 
     # Register middlewares
-    dp.update.middleware(DatabaseMiddleware())
-    dp.update.middleware(RoleMiddleware())
+    dp.message.middleware(DatabaseMiddleware())
+    dp.message.middleware(RoleMiddleware())
 
     return dp
