@@ -17,3 +17,6 @@ docker/
 # Project Files
 .editorconfig
 .gitignore
+
+LICENSE
+README.md
