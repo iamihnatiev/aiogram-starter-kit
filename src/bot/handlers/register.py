@@ -3,13 +3,14 @@ from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 
 from src.db import Database
+from src.bot.common import text
 from src.bot.states import RegisterStates
 from src.bot.keyboards import USER_MENU_KB
 
 register_router = Router(name='register')
 
 
-@register_router.message(F.text == "Register", RegisterStates.confirm)
+@register_router.message(F.text == text.REGISTER_CONFIRM, RegisterStates.confirm)
 async def register_confirm(message: Message, state: FSMContext, db: Database):
     await state.clear()
 
