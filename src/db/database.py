@@ -5,8 +5,8 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from .repositories import UserRepository
 
 
-def get_engine(url: str | URL) -> AsyncEngine:
-    return create_async_engine(url=url, echo=True, pool_pre_ping=True)
+def get_engine(connection_url: str | URL) -> AsyncEngine:
+    return create_async_engine(url=connection_url, echo=True, pool_pre_ping=True)
 
 
 class Database:

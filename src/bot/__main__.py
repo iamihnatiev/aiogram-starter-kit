@@ -30,7 +30,7 @@ async def start_bot():
 
     # Run bot
     await dp.start_polling(bot, **DatabaseDTO(
-        engine=get_engine(url=conf.db.build_connection_url()),
+        engine=get_engine(connection_url=conf.db.build_connection_url()),
     ))
 
 
