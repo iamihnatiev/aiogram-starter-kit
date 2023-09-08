@@ -1,8 +1,8 @@
 import logging
 
-from decouple import config
 from dataclasses import dataclass
 
+from decouple import config
 from sqlalchemy.engine import URL
 
 
@@ -35,8 +35,8 @@ class RedisConfig:
     port: int = config('REDIS_PORT', default=6379, cast=int)
     db: int = config('REDIS_DATABASE', default=1, cast=int)
 
-    state_ttl: int | None = config('REDIS_STATE_TTL', default=0, cast=int)
-    data_ttl: int | None = config('REDIS_DATA_TTL', default=0, cast=int)
+    state_ttl: int = config('REDIS_STATE_TTL', default=0, cast=int)
+    data_ttl: int = config('REDIS_DATA_TTL', default=0, cast=int)
 
 
 @dataclass
