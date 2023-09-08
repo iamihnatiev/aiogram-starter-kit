@@ -1,3 +1,5 @@
+from typing import Optional
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -34,10 +36,13 @@ class UserRepository(Repository[User]):
             )
         )
 
-    async def exists(self, user_id: int) -> bool:
+    async def get_by_user_id(self, user_id: int) -> Optional[User]:
         statement = select(User).where(User.user_id == user_id)
         result = await self.session.execute(statement)
 
-        user = result.scalar_one_or_none()
+        return result.scalar_one_or_none()
+
+    async def exist(self, user_id: int) -> bool:
+        user = await self.get_by_user_id(user_id)
 
         return user is not None
