@@ -12,12 +12,12 @@ class User(BaseEntity):
         BigInteger, unique=True, nullable=False,
     )
 
-    phone_number: Mapped[str] = mapped_column(
+    username: Mapped[str] = mapped_column(
         Text, unique=True, nullable=True,
     )
 
-    username: Mapped[str] = mapped_column(
-        Text, unique=False, nullable=True,
+    phone_number: Mapped[str] = mapped_column(
+        Text, unique=True, nullable=True,
     )
 
     first_name: Mapped[str] = mapped_column(

@@ -1,18 +1,24 @@
 from aiogram import Router, html
 from aiogram.filters import CommandStart
 from aiogram.types import Message
+from aiogram.fsm.context import FSMContext
 
-from src.db import Database
-from src.bot.services import UserService
-from src.bot.dtos.user import UserDTO
+from src.bot.filters import RegisterFilter
+from src.bot.states import RegisterStates
+from src.bot.keyboards import REGISTER_CONFIRM_KB, USER_MENU_KB
 
 start_router = Router(name='start')
 
 
+@start_router.message(CommandStart(), RegisterFilter())
+async def start_wo_register(message: Message, state: FSMContext):
+    await state.set_state(RegisterStates.confirm)
+    await message.answer(text="Welcome to the registration process.", reply_markup=REGISTER_CONFIRM_KB)
+
+
 @start_router.message(CommandStart())
-async def start_handler(message: Message, db: Database):
-    # user_service = UserService(db=db)
-
-    # user: UserDTO = await user_service.get_user(user_id=message.from_user.id)
-
-    await message.answer(text=f"Hello, {html.bold(message.from_user.first_name)}!")
+async def start_w_register(message: Message):
+    await message.answer(
+        text=f"Welcome back, {html.bold(message.from_user.first_name)}.",
+        reply_markup=USER_MENU_KB,
+    )

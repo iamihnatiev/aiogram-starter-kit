@@ -5,6 +5,11 @@ from dataclasses import dataclass
 
 from sqlalchemy.engine import URL
 
+from dotenv import load_dotenv
+
+# Load environment variables from `.env` file
+load_dotenv()
+
 
 @dataclass
 class DatabaseConfig:

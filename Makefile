@@ -1,3 +1,7 @@
+.PHONY: run
+run:
+	poetry run python -m src.bot
+
 # Run Alembic to generate a new migration script
 .PHONY: migration
 migration:

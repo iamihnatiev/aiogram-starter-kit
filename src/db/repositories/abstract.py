@@ -14,13 +14,14 @@ class Repository(Generic[TEntity]):
         self.session = session
         self.entity = entity
 
-    async def get(self, ident: int | str) -> Optional[TEntity]:
+    async def get_by_id(self, ident: int | str) -> Optional[TEntity]:
         return await self.session.get(entity=self.entity, ident=ident)
 
-    async def get_by_where(self, whereclause: Any) -> Optional[TEntity]:
+    async def get_one(self, whereclause: Any) -> Optional[TEntity]:
         statement = select(self.entity).where(whereclause)
+        result = await self.session.execute(statement)
 
-        return (await self.session.execute(statement)).one_or_none()
+        return result.scalar_one_or_none()
 
     async def get_many(
         self,
@@ -34,20 +35,25 @@ class Repository(Generic[TEntity]):
         if order_by:
             statement = statement.order_by(order_by)
 
-        return (await self.session.scalars(statement)).all()
+        result = await self.session.execute(statement)
+
+        return result.scalars().all()
 
     async def add(self, record: TEntity) -> TEntity:
-        self.session.add(record)
-        await self.session.flush()
+        async with self.session.begin():
+            self.session.add(record)
+            await self.session.flush()
 
         return record
 
     async def update(self, record: TEntity) -> TEntity:
-        await self.session.merge(record)
-        await self.session.flush()
+        async with self.session.begin():
+            await self.session.merge(record)
+            await self.session.flush()
 
         return record
 
-    async def delete(self, whereclause: Any) -> None:
+    async def remove(self, whereclause: Any) -> None:
         statement = delete(self.entity).where(whereclause)
         await self.session.execute(statement)
+
