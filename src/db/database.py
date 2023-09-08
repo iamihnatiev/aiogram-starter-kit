@@ -2,11 +2,13 @@ from sqlalchemy.engine.url import URL
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine
 
+
+from src.config import conf
 from .repositories import UserRepository
 
 
 def get_engine(connection_url: str | URL) -> AsyncEngine:
-    return create_async_engine(url=connection_url, echo=True, pool_pre_ping=True)
+    return create_async_engine(url=connection_url, echo=conf.debug, pool_pre_ping=True)
 
 
 class Database:

@@ -1,23 +1,18 @@
 import logging
 
-from os import getenv
+from decouple import config
 from dataclasses import dataclass
 
 from sqlalchemy.engine import URL
 
-from dotenv import load_dotenv
-
-# Load environment variables from `.env` file
-load_dotenv()
-
 
 @dataclass
 class DatabaseConfig:
-    username: str = getenv(key='POSTGRES_USER')
-    password: str | None = getenv(key='POSTGRES_PASSWORD', default=None)
-    host: str = getenv(key='POSTGRES_HOST', default='postgres')
-    port: int = int(getenv(key='POSTGRES_PORT', default=5432))
-    database: str = getenv(key='POSTGRES_DATABASE')
+    username: str = config('POSTGRES_USER')
+    password: str | None = config('POSTGRES_PASSWORD', default=None)
+    host: str = config('POSTGRES_HOST', default='postgres')
+    port: int = config('POSTGRES_PORT', default=5432, cast=int)
+    database: str = config('POSTGRES_DATABASE')
 
     database_system: str = 'postgresql'
     driver: str = 'asyncpg'
@@ -35,23 +30,24 @@ class DatabaseConfig:
 
 @dataclass
 class RedisConfig:
-    password: str = getenv(key='REDIS_PASSWORD')
-    host: str = getenv(key='REDIS_HOST', default='redis')
-    port: int = int(getenv(key='REDIS_PORT', default=6379))
-    db: int = int(getenv(key='REDIS_DATABASE', default=1))
+    password: str = config('REDIS_PASSWORD')
+    host: str = config('REDIS_HOST', default='redis')
+    port: int = config('REDIS_PORT', default=6379, cast=int)
+    db: int = config('REDIS_DATABASE', default=1, cast=int)
 
-    state_ttl: int | None = getenv(key='REDIS_STATE_TTL', default=None)
-    data_ttl: int | None = getenv(key='REDIS_DATA_TTL', default=None)
+    state_ttl: int | None = config('REDIS_STATE_TTL', default=0, cast=int)
+    data_ttl: int | None = config('REDIS_DATA_TTL', default=0, cast=int)
 
 
 @dataclass
 class BotConfig:
-    token: str = getenv('BOT_TOKEN')
+    token: str = config('BOT_TOKEN')
 
 
 @dataclass
 class Config:
-    logging_level = int(getenv('LOGGING_LEVEL', logging.INFO))
+    debug: bool = config('DEBUG', default=True, cast=bool)
+    logging_level: int = config('LOGGING_LEVEL', default=logging.INFO, cast=int)
 
     db = DatabaseConfig()
     redis = RedisConfig()
