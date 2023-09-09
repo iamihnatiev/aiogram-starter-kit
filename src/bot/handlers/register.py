@@ -3,8 +3,8 @@ from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 
 from src.db import Database
-from src.bot.common import text
 from src.bot.states import RegisterStates
+from src.bot.common import text
 from src.bot.keyboards import USER_MENU_KB
 
 register_router = Router(name='register')

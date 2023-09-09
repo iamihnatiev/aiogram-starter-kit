@@ -1,4 +1,6 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import WebAppInfo, ReplyKeyboardMarkup, KeyboardButton
+
+web_app = WebAppInfo(url='https://iamihnatiev.github.io')
 
 USER_MENU_KB = ReplyKeyboardMarkup(
     keyboard=[
@@ -8,7 +10,7 @@ USER_MENU_KB = ReplyKeyboardMarkup(
         ],
         [
             KeyboardButton(text="Button 3"),
-            KeyboardButton(text="Button 4"),
+            KeyboardButton(text="Website", web_app=web_app),
         ]
     ],
     resize_keyboard=True,

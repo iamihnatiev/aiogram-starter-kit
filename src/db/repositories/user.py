@@ -42,6 +42,11 @@ class UserRepository(Repository[User]):
 
         return result.scalar_one_or_none()
 
+    async def get_role(self, user_id: int) -> Role:
+        user = await self.get_by_user_id(user_id)
+
+        return user.role
+
     async def exist(self, user_id: int) -> bool:
         user = await self.get_by_user_id(user_id)
 
