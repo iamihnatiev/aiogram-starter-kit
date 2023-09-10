@@ -15,8 +15,9 @@ docker/
 .env.example
 
 # Project Files
-.editorconfig
+.git/
 .gitignore
+.editorconfig
 
 LICENSE
 README.md
