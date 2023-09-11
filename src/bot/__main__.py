@@ -29,9 +29,12 @@ async def start_bot():
     await set_ui_commands(bot=bot)
 
     # Run bot
-    await dp.start_polling(bot, **DatabaseDTO(
-        engine=get_engine(connection_url=conf.db.build_connection_url()),
-    ))
+    await dp.start_polling(
+        bot,
+        allowed_updates=dp.resolve_used_update_types(),
+        **DatabaseDTO(
+            engine=get_engine(connection_url=conf.db.build_connection_url()),
+        ))
 
 
 if __name__ == '__main__':
