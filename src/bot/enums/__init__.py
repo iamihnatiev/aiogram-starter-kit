@@ -1,5 +1,6 @@
-from .role import Role
 from .gender import Gender
+from .role import Role
+
 
 __all__ = (
     'Role',

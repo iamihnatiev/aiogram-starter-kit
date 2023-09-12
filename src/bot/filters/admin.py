@@ -1,8 +1,8 @@
 from aiogram.filters import BaseFilter
 from aiogram.types import Message
 
-from src.db import Database
 from src.bot.enums import Role
+from src.db import Database
 
 
 class AdminFilter(BaseFilter):

@@ -1,10 +1,11 @@
-from typing import TypeVar, Generic, Type, Optional, Any
 from collections.abc import Sequence
+from typing import Any, Generic, Optional, Type, TypeVar
 
-from sqlalchemy import select, delete
+from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.db.entities import BaseEntity
+
 
 TEntity = TypeVar('TEntity', bound=BaseEntity)
 

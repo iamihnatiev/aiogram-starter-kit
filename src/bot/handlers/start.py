@@ -1,11 +1,12 @@
 from aiogram import Router, html
 from aiogram.filters import CommandStart
-from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
+from aiogram.types import Message
 
 from src.bot.filters import RegisterFilter
-from src.bot.states import RegisterStates
 from src.bot.keyboards import REGISTER_CONFIRM_KB, USER_MENU_KB
+from src.bot.states import RegisterStates
+
 
 start_router = Router(name='start')
 

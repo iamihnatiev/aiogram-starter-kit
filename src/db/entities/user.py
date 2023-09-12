@@ -1,7 +1,8 @@
-from sqlalchemy import BigInteger, Text, Enum
+from sqlalchemy import BigInteger, Enum, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from src.bot.enums import Role, Gender
+from src.bot.enums import Gender, Role
+
 from .base import BaseEntity
 
 

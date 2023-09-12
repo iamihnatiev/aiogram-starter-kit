@@ -1,15 +1,14 @@
-import logging
 import asyncio
-
-from redis.asyncio.client import Redis
+import logging
 
 from aiogram import Bot
 from aiogram.enums import ParseMode
+from redis.asyncio.client import Redis
 
-from src.config import conf
-from src.bot.utils import set_ui_commands
 from src.bot.dispatcher import get_dispatcher, get_redis_storage
 from src.bot.dtos import DatabaseDTO
+from src.bot.utils import set_ui_commands
+from src.config import conf
 from src.db.database import get_engine
 
 

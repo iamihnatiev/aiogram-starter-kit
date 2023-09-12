@@ -1,9 +1,8 @@
 from sqlalchemy.engine.url import URL
-from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession
-from sqlalchemy.ext.asyncio import create_async_engine
-
+from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, create_async_engine
 
 from src.config import conf
+
 from .repositories import UserRepository
 
 

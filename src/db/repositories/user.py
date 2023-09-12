@@ -3,9 +3,10 @@ from typing import Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from .abstract import Repository
+from src.bot.enums import Gender, Role
 from src.db.entities import User
-from src.bot.enums import Role, Gender
+
+from .abstract import Repository
 
 
 class UserRepository(Repository[User]):

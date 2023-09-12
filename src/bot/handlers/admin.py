@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 from src.bot.filters import AdminFilter
 
+
 admin_router = Router(name='admin')
 admin_router.message.filter(AdminFilter())
 

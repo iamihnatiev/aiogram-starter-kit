@@ -1,6 +1,7 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 
 from src.bot.common import text
+
 
 REGISTER_CONFIRM_KB = ReplyKeyboardMarkup(
     keyboard=[

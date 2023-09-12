@@ -1,11 +1,12 @@
-from aiogram import Router, F
-from aiogram.types import Message
+from aiogram import F, Router
 from aiogram.fsm.context import FSMContext
+from aiogram.types import Message
 
-from src.db import Database
-from src.bot.states import RegisterStates
 from src.bot.common import text
 from src.bot.keyboards import USER_MENU_KB
+from src.bot.states import RegisterStates
+from src.db import Database
+
 
 register_router = Router(name='register')
 

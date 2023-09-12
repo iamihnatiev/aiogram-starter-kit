@@ -1,4 +1,5 @@
-from aiogram.types import WebAppInfo, ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import KeyboardButton, ReplyKeyboardMarkup, WebAppInfo
+
 
 web_app = WebAppInfo(url='https://iamihnatiev.github.io')
 

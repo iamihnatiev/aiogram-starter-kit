@@ -1,13 +1,12 @@
-from collections.abc import Callable, Awaitable
+from collections.abc import Awaitable, Callable
 from typing import Any, Dict
 
+from aiogram import BaseMiddleware
+from aiogram.types import CallbackQuery, Message
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from aiogram import BaseMiddleware
-from aiogram.types import Message, CallbackQuery
-
-from src.db.database import Database
 from src.bot.dtos import DatabaseDTO
+from src.db.database import Database
 
 
 class DatabaseMiddleware(BaseMiddleware):
