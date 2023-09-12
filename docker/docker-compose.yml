@@ -1,18 +1,14 @@
 version: '3.9'
 name: 'aiogram_starter_kit'
 
-# Configurations shared between services
-x-base-bot: &base-bot
-  build:
-    context: ..
-    dockerfile: docker/images/bot/Dockerfile
-  env_file:
-    - ../bot/.env
-
 services:
   # Bot application service
   bot:
-    <<: *base-bot
+    build:
+      context: ..
+      dockerfile: docker/images/bot/Dockerfile
+    env_file:
+      - ../bot/.env
     depends_on:
       - postgres-db
       - redis-db
