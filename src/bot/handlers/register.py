@@ -8,7 +8,7 @@ from src.bot.states import RegisterStates
 from src.db import Database
 
 
-register_router = Router(name='register')
+register_router = Router(name="register")
 
 
 @register_router.message(F.text == text.REGISTER_CONFIRM, RegisterStates.confirm)

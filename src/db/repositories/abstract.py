@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.entities import BaseEntity
 
 
-TEntity = TypeVar('TEntity', bound=BaseEntity)
+TEntity = TypeVar("TEntity", bound=BaseEntity)
 
 
 class Repository(Generic[TEntity]):
@@ -57,4 +57,3 @@ class Repository(Generic[TEntity]):
     async def remove(self, whereclause: Any) -> None:
         statement = delete(self.entity).where(whereclause)
         await self.session.execute(statement)
-

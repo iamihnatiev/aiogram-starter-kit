@@ -8,7 +8,7 @@ from src.bot.keyboards import REGISTER_CONFIRM_KB, USER_MENU_KB
 from src.bot.states import RegisterStates
 
 
-start_router = Router(name='start')
+start_router = Router(name="start")
 
 
 @start_router.message(CommandStart(), RegisterFilter())

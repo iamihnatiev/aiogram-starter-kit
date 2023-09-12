@@ -2,7 +2,7 @@ from aiogram import Router
 from aiogram.types import Message
 
 
-unrecognized_router = Router(name='unrecognized')
+unrecognized_router = Router(name="unrecognized")
 
 
 @unrecognized_router.message()

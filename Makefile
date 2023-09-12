@@ -1,9 +1,5 @@
-# Define phony targets
-.PHONY: run install lock check check-fix migration migrate-up migrate-down project-start project-stop
-
-# Run the Python application
-run:
-	poetry run python -m src.bot
+# Use a single shell for all targets
+.ONESHELL:
 
 # Install project dependencies with development dependencies but exclude root
 install:
@@ -13,15 +9,16 @@ install:
 lock:
 	poetry lock
 
-# Run code analysis on the source code
-check:
-	black . --check \
-	&& ruff check .
+# Format code using Black
+black:
+	poetry run black src/
 
-# Run code analysis and fix issues
-check-fix:
-	black .
-	ruff check --fix-only --show-fixes --statistics .
+# Perform code analysis and fix issues using Ruff
+ruff:
+	poetry run ruff check src/ --fix-only --show-fixes --statistics
+
+# Combined target to run code formatting and analysis fixes
+check-fix: black ruff
 
 # Generate a new Alembic migration script
 migration:
@@ -37,8 +34,8 @@ migrate-down:
 
 # Start the project using Docker Compose
 project-start:
-	docker-compose up --force-recreate $(OPTIONS)
+	cd docker/ && docker compose up
 
 # Stop the project using Docker Compose
 project-stop:
-	docker-compose down --remove-orphans $(OPTIONS)
+	cd docker/ && docker compose down

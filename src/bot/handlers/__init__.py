@@ -8,7 +8,6 @@ routers = (
     start_router,
     register_router,
     admin_router,
-
     # Positioned last to handle unrecognized messages
     unrecognized_router,
 )

@@ -8,13 +8,18 @@ class BaseEntity(DeclarativeBase):
     __allow_unmapped__ = False
 
     id: Mapped[int] = mapped_column(
-        Integer, autoincrement=True, primary_key=True,
+        Integer,
+        autoincrement=True,
+        primary_key=True,
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=func.now(),
+        DateTime(timezone=True),
+        default=func.now(),
     )
 
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=func.now(), onupdate=func.now(),
+        DateTime(timezone=True),
+        default=func.now(),
+        onupdate=func.now(),
     )
