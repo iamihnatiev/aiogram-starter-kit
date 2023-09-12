@@ -1,5 +1,5 @@
 # Define phony targets
-.PHONY: run install lock migration migrate-up migrate-down check check-fix project-start project-stop
+.PHONY: run install lock check check-fix migration migrate-up migrate-down project-start project-stop
 
 # Run the Python application
 run:
@@ -13,6 +13,16 @@ install:
 lock:
 	poetry lock
 
+# Run code analysis on the source code
+check:
+	black . --check \
+	&& ruff check .
+
+# Run code analysis and fix issues
+check-fix:
+	black .
+	ruff check --fix-only --show-fixes --statistics .
+
 # Generate a new Alembic migration script
 migration:
 	poetry run alembic revision --autogenerate -m "$(NAME)"
@@ -24,14 +34,6 @@ migrate-up:
 # Revert the database by one step with Alembic
 migrate-down:
 	poetry run alembic downgrade -1
-
-# Run code analysis on the source code
-check:
-	poetry run ruff check src/
-
-# Run code analysis and fix issues
-check-fix:
-	poetry run ruff check --fix-only --show-fixes --statistics
 
 # Start the project using Docker Compose
 project-start:

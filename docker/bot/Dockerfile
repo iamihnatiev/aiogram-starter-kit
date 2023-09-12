@@ -3,8 +3,8 @@ FROM python:3.11-slim as python-base
 
 # Set environment variables for Poetry
 ENV POETRY_VERSION=1.6.1 \
-  POETRY_HOME=/opt/poetry \
-  POETRY_VENV=/opt/poetry-venv
+    POETRY_HOME=/opt/poetry \
+    POETRY_VENV=/opt/poetry-venv
 
 # Set the location for Poetry's cache
 ENV POETRY_CACHE_DIR=/opt/.cache
@@ -14,8 +14,8 @@ FROM python-base as poetry-base
 
 # Install Poetry in a virtual environment dedicated to it
 RUN python3 -m venv $POETRY_VENV \
-  && $POETRY_VENV/bin/pip install -U pip setuptools \
-  && $POETRY_VENV/bin/pip install poetry==${POETRY_VERSION}
+    && $POETRY_VENV/bin/pip install -U pip setuptools \
+    && $POETRY_VENV/bin/pip install poetry==${POETRY_VERSION}
 
 # Create a new stage for the application
 FROM python-base as app

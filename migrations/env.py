@@ -30,7 +30,7 @@ target_metadata = BaseEntity.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-config.set_main_option("sqlalchemy.url", "postgresql+asyncpg://postgres:postgres@localhost:5432/postgres")
+config.set_main_option("sqlalchemy.url", conf.db.build_connection_url())
 
 
 def run_migrations_offline() -> None:
