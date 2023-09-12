@@ -1,23 +1,5 @@
-# JetBrains IDEs
-.idea/
-
-# VisualStudioCode
-.vscode/
-
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/
 
-# Distribution / packaging
-docker/
-
-# Environments
-.env
-.env.example
-
-# Project Files
-.git/
+# Other Files
 .gitignore
-.editorconfig
-
-LICENSE
-README.md

@@ -1,0 +1,92 @@
+# Build system requirements
+[build-system]
+requires = ["poetry-core", "setuptools", "pip"]
+
+# Poetry project metadata
+[tool.poetry]
+name = "aiogram_starter_kit"
+version = "0.1.0"
+description = "A Versatile and Functional aiogram 3.x Bot Template."
+authors = [
+    "Serhii Ihnatiev <141933729+iamihnatiev@users.noreply.github.com>",
+]
+license = "MIT"
+
+# Runtime dependencies
+[tool.poetry.dependencies]
+python = "^3.11"
+python-decouple = "^3.8"
+aiogram = "^3.0.0"
+sqlalchemy = "^2.0.20"
+asyncpg = "^0.28.0"
+alembic = "^1.12.0"
+greenlet = "^2.0.2"
+redis = "^5.0.0"
+
+# Development dependencies
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+ruff = "^0.0.288"
+
+# Black code formatter configuration
+[tool.black]
+# Maximum line length for code formatting
+line-length = 120
+
+# Assume Python 3.11
+target-version = ["py311"]
+
+# Ruff code linter configuration
+[tool.ruff]
+# Enable pycodestyle (`E`), Pyflakes (`F`) and Isort (`I`) codes by default
+select = ["E", "F", "I"]
+ignore = []
+
+# Allow autofix for all enabled rules (when `--fix`) is provided
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+unfixable = []
+
+# Exclude a variety of commonly ignored directories
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+# Same as Black
+line-length = 120
+
+# Allow unused variables when underscore-prefixed
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.11
+target-version = "py311"
+
+# Per-file ignores for specific Python files
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+
+# Configuration for the isort code formatter
+[tool.ruff.isort]
+lines-between-types = 1
+lines-after-imports = 2
+known-first-party = ["aiogram_starter_kits"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]

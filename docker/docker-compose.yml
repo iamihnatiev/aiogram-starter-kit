@@ -1,52 +1,44 @@
 version: '3.9'
-name: 'aiogram-starter-kit'
+name: 'aiogram_starter_kit'
 
 # Configurations shared between services
-x-base-conf: &base-conf
+x-base-bot: &base-bot
+  build:
+    context: ..
+    dockerfile: docker/images/bot/Dockerfile
   env_file:
-    - ../.env
+    - ../bot/.env
 
 services:
+  # Bot application service
+  bot:
+    <<: *base-bot
+    depends_on:
+      - postgres-db
+      - redis-db
+
   # PostgreSQL database service
-  database:
-    <<: *base-conf
+  postgres-db:
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: postgres_db
     image: postgres:15.4-alpine
-    restart: always
-    ports:
-      - '5432:5432'
     volumes:
-      - database_data:/var/lib/postgresql/data:rw
+      - postgres_data:/var/lib/postgresql/data:rw
+
+  # Redis server service
+  redis-db:
+    image: redis:7.2-alpine
+    volumes:
+      - redis_data:/data:rw
 
   # Adminer service for managing databases
   adminer:
     image: adminer:latest
-    restart: on-failure
     ports:
       - '8080:8080'
 
-  # Redis server service
-  redis:
-    <<: *base-conf
-    build:
-      context: redis
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - '6379:6379'
-    volumes:
-      - redis_data:/data:rw
-
-  # Bot application service
-  bot:
-    <<: *base-conf
-    build:
-      context: ..
-      dockerfile: docker/images/bot/Dockerfile
-    restart: always
-    depends_on:
-      - database
-      - redis
-
 volumes:
-  database_data:
+  postgres_data:
   redis_data:

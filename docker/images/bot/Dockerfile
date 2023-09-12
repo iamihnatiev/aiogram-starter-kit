@@ -30,7 +30,7 @@ ENV PATH="${PATH}:${POETRY_VENV}/bin"
 WORKDIR /app
 
 # Copy only the Pyproject files initially to leverage Docker layer caching
-COPY poetry.lock pyproject.toml /app/
+COPY ./bot/pyproject.toml ./bot/poetry.lock /app/
 
 # Validate the project's configuration with Poetry
 RUN poetry check
@@ -39,7 +39,7 @@ RUN poetry check
 RUN poetry install --no-interaction --no-cache --no-root
 
 # Copy the entire application code into the container
-COPY . /app/
+COPY ./bot /app
 
 # Define the command to run the application
-CMD ["poetry", "run", "python", "-m", "src.bot"]
+CMD ["poetry", "run", "python", "-m", "aiogram_starter_kit"]
