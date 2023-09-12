@@ -26,6 +26,7 @@ redis = "^5.0.0"
 # Development dependencies
 [tool.poetry.group.dev.dependencies]
 black = "^23.9.1"
+ruff = "^0.0.288"
 
 # Black code formatter configuration
 [tool.black]
