@@ -32,7 +32,7 @@ WORKDIR /app
 # Copy only the Pyproject files initially to leverage Docker layer caching
 COPY poetry.lock pyproject.toml /app/
 
-# [OPTIONAL] Validate the project's configuration with Poetry
+# Validate the project's configuration with Poetry
 RUN poetry check
 
 # Install project dependencies without creating a virtualenv (no-root option)

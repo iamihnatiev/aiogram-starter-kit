@@ -46,6 +46,9 @@ class UserRepository(Repository[User]):
     async def get_role(self, user_id: int) -> Role:
         user = await self.get_by_user_id(user_id)
 
+        if not user:
+            return Role.UNKNOWN
+
         return user.role
 
     async def exist(self, user_id: int) -> bool:

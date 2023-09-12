@@ -1,45 +1,52 @@
-version: "3.8"
+version: '3.9'
+name: 'aiogram-starter-kit'
+
+# Configurations shared between services
+x-base-conf: &base-conf
+  env_file:
+    - ../.env
+
 services:
   # PostgreSQL database service
-  postgres:
+  database:
+    <<: *base-conf
     image: postgres:15.4-alpine
     restart: always
-    env_file:
-      - .env
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - database_data:/var/lib/postgresql/data:rw
 
   # Adminer service for managing databases
   adminer:
     image: adminer:latest
     restart: on-failure
     ports:
-      - "8080:8080"
+      - '8080:8080'
 
   # Redis server service
   redis:
+    <<: *base-conf
     build:
-      context: docker/redis
+      context: redis
       dockerfile: Dockerfile
     restart: always
-    env_file:
-      - .env
     ports:
-      - "6379:6379"
+      - '6379:6379'
+    volumes:
+      - redis_data:/data:rw
 
   # Bot application service
   bot:
+    <<: *base-conf
     build:
-      context: .
+      context: ..
       dockerfile: docker/bot/Dockerfile
     restart: always
-    env_file:
-      - .env
     depends_on:
-      - postgres
+      - database
       - redis
 
 volumes:
-  postgres-data:
+  database_data:
+  redis_data:
