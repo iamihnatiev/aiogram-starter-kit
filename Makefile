@@ -1,28 +1,42 @@
-.PHONY: run
+# Define phony targets
+.PHONY: run install lock migration migrate-up migrate-down check check-fix project-start project-stop
+
+# Run the Python application
 run:
 	poetry run python -m src.bot
 
-# Run Alembic to generate a new migration script
-.PHONY: migration
+# Install project dependencies with development dependencies but exclude root
+install:
+	poetry install --with dev --no-root
+
+# Generate a poetry.lock file to lock dependency versions
+lock:
+	poetry lock
+
+# Generate a new Alembic migration script
 migration:
-	. .env && poetry run alembic revision --autogenerate -m "$(NAME)"
+	poetry run alembic revision --autogenerate -m "$(NAME)"
 
-# Run Alembic to apply database migrations
-.PHONY: migrate-up
+# Apply database migrations with Alembic
 migrate-up:
-	. .env && poetry run alembic upgrade head
+	poetry run alembic upgrade head
 
-# Run Alembic to revert the database by one step
-.PHONY: migrate-down
+# Revert the database by one step with Alembic
 migrate-down:
-	. .env && poetry run alembic downgrade -1
+	poetry run alembic downgrade -1
 
-# Use Docker Compose to start the project
-.PHONY: project-start
+# Run code analysis on the source code
+check:
+	poetry run ruff check src/
+
+# Run code analysis and fix issues
+check-fix:
+	poetry run ruff check --fix-only --show-fixes --statistics
+
+# Start the project using Docker Compose
 project-start:
 	docker-compose up --force-recreate $(OPTIONS)
 
-# Use Docker Compose to stop the project
-.PHONY: project-stop
+# Stop the project using Docker Compose
 project-stop:
 	docker-compose down --remove-orphans $(OPTIONS)
