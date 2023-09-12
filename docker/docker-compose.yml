@@ -41,7 +41,7 @@ services:
     <<: *base-conf
     build:
       context: ..
-      dockerfile: docker/bot/Dockerfile
+      dockerfile: docker/images/bot/Dockerfile
     restart: always
     depends_on:
       - database
