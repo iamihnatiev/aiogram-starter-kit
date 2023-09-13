@@ -1,6 +1,7 @@
 # Define the base Python image with a specific tag
 FROM python:3.11-slim as python-base
 
+# Ensure Python output is unbuffered
 ENV PYTHONUNBUFFERED 1
 
 # Install system dependencies
