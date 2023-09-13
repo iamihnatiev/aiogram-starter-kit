@@ -10,7 +10,6 @@ from alembic import context
 from aiogram_starter_kit.configuration import conf
 from aiogram_starter_kit.db import BaseEntity
 
-
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -30,7 +29,12 @@ target_metadata = BaseEntity.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-config.set_main_option("sqlalchemy.url", conf.db.build_connection_url())
+# config.set_main_option("sqlalchemy.url", conf.db.build_connection_url())
+# config.set_main_option("sqlalchemy.url", conf.db.build_connection_url())
+config.set_main_option(
+    "sqlalchemy.url",
+    "postgresql+asyncpg://postgres_user:postgres_password@localhost:5432/postgres_db",
+)
 
 
 def run_migrations_offline() -> None:

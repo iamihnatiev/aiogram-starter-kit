@@ -8,3 +8,7 @@ project-start:
 # Stop the project using Docker Compose
 project-stop:
 	cd docker/ && docker compose down
+
+# Build the project using Docker Compose
+project-build:
+	cd docker/ && docker compose build

@@ -7,6 +7,7 @@ services:
     build:
       context: ..
       dockerfile: docker/images/bot/Dockerfile
+      target: live
     env_file:
       - ../bot/.env
     depends_on:
@@ -15,6 +16,8 @@ services:
 
   # PostgreSQL database service
   postgres-db:
+    ports:
+      - '5432:5432'
     environment:
       POSTGRES_USER: postgres_user
       POSTGRES_PASSWORD: postgres_password
@@ -31,9 +34,9 @@ services:
 
   # Adminer service for managing databases
   adminer:
-    image: adminer:latest
     ports:
       - '8080:8080'
+    image: adminer:latest
 
 volumes:
   postgres_data:
