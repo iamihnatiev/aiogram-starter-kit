@@ -1,5 +1,5 @@
-version: '3.9'
-name: 'aiogram_starter_kit'
+version: "3.9"
+name: "aiogram_starter_kit"
 
 services:
   # Bot application service
@@ -36,8 +36,12 @@ services:
   # Adminer service for managing databases
   adminer:
     ports:
-      - '8080:8080'
+      - "8080:8080"
     image: adminer:latest
+    depends_on:
+      - postgres-db
+    profiles:
+      - debug
 
 volumes:
   postgres_data:
