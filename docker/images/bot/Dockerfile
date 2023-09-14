@@ -29,9 +29,19 @@ RUN poetry config virtualenvs.create false \
     && poetry install --no-root --no-cache --no-ansi --no-interaction --only main \
     && poetry cache clear pypi --all
 
+# Copy the entrypoint script to the container
+COPY ./docker/images/bot/files/entrypoint.sh /opt/docker/entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /opt/docker/entrypoint.sh
+
+# Set the entrypoint script for container initialization
+ENTRYPOINT ["/opt/docker/entrypoint.sh"]
+
 # Create a separate stage for development
 FROM python-base as local
 
+# Install development dependencies
 RUN poetry install --no-root --no-cache --no-ansi --no-interaction --with dev \
     && poetry cache clear pypi --all
 
