@@ -9,25 +9,24 @@ install:
 lock:
 	poetry lock
 
-# Format code using Black
-black:
-	poetry run black .
+# Check code formatting and perform project-specific checks
+check:
+	black . --check \
+	&& ruff check . \
 
-# Perform code analysis and fix issues using Ruff
-ruff:
-	poetry run ruff check . --fix-only --show-fixes --statistics
-
-# Combined target to run code formatting and analysis fixes
-check-fix: black ruff
+# Automatically fix code formatting and apply project-specific fixes
+check-fix:
+	black .
+	ruff check . --fix-only --show-fixes --statistics
 
 # Generate a new Alembic migration script
 migration:
-	poetry run alembic revision --autogenerate -m "$(NAME)"
+	python alembic revision --autogenerate -m "$(NAME)"
 
 # Apply database migrations with Alembic
 migrate-up:
-	poetry run alembic upgrade head
+	python alembic upgrade head
 
 # Revert the database by one step with Alembic
 migrate-down:
-	poetry run alembic downgrade -1
+	python run alembic downgrade -1
