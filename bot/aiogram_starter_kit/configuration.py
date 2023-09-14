@@ -41,7 +41,6 @@ class BotConfig:
 @dataclass
 class Config:
     debug: bool = config("DEBUG", cast=bool)
-    logging_level: int = config("LOGGING_LEVEL", cast=int)
 
     db = DatabaseConfig()
     redis = RedisConfig()

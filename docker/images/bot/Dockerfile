@@ -40,6 +40,3 @@ FROM python-base as live
 
 # Copy the entire application code into the container
 COPY ./bot /opt/bot
-
-# Define the command to run the AIogram Starter Kit application
-CMD ["poetry", "run", "python", "-m", "aiogram_starter_kit"]

@@ -1,6 +1,3 @@
-import asyncio
-import logging
-
 from aiogram import Bot
 from aiogram.enums import ParseMode
 from redis.asyncio.client import Redis
@@ -37,8 +34,3 @@ async def start_bot():
             engine=get_engine(connection_url=conf.db.build_connection_url()),
         ),
     )
-
-
-if __name__ == "__main__":
-    logging.basicConfig(level=conf.logging_level)
-    asyncio.run(start_bot())

@@ -29,4 +29,8 @@ migrate-up:
 
 # Revert the database by one step with Alembic
 migrate-down:
-	python run alembic downgrade -1
+	python alembic downgrade -1
+
+# Run the project, ensuring that migrations are applied first
+run: migrate-up
+	python run.py

@@ -7,9 +7,12 @@ services:
     build:
       context: ..
       dockerfile: docker/images/bot/Dockerfile
-      target: live
+      target: local
     env_file:
       - ../bot/.env
+    volumes:
+      - ../bot:/opt/bot
+    command: ["make", "run"]
     depends_on:
       - postgres-db
       - redis-db
