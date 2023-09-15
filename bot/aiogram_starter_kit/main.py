@@ -10,7 +10,13 @@ from aiogram_starter_kit.utils import set_ui_commands
 from .configuration import conf
 
 
-async def start_bot():
+async def start_bot() -> None:
+    """
+    Start the Aiogram bot with configuration settings.
+
+    This function initializes the Aiogram bot, sets up the Redis storage, creates a Dispatcher, and starts
+    the bot with the specified settings.
+    """
     bot = Bot(token=conf.bot.token, parse_mode=ParseMode.HTML)
 
     storage = get_redis_storage(

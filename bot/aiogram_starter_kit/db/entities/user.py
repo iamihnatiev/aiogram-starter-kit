@@ -7,6 +7,12 @@ from .base import BaseEntity
 
 
 class User(BaseEntity):
+    """
+    SQLAlchemy entity representing user data.
+
+    This class defines the structure of the 'users' table in the database, including user-specific attributes.
+    """
+
     __tablename__ = "users"
 
     user_id: Mapped[int] = mapped_column(

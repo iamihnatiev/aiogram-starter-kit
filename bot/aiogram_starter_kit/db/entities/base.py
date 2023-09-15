@@ -5,6 +5,13 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 class BaseEntity(DeclarativeBase):
+    """
+    Base class for SQLAlchemy entities with common attributes.
+
+    This class defines common attributes like 'id', 'created_at', and 'updated_at' that are often
+    shared among database entities.
+    """
+
     __allow_unmapped__ = False
 
     id: Mapped[int] = mapped_column(

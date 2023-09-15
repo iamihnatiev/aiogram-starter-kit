@@ -6,5 +6,5 @@ unrecognized_router = Router(name="unrecognized")
 
 
 @unrecognized_router.message()
-async def unrecognized(message: Message):
+async def unrecognized(message: Message) -> None:
     await message.answer(text="I'm sorry, but I couldn't understand your message.")

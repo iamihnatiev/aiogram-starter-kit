@@ -12,7 +12,7 @@ register_router = Router(name="register")
 
 
 @register_router.message(F.text == text.REGISTER_CONFIRM, RegisterStates.confirm)
-async def register_confirm(message: Message, state: FSMContext, db: Database):
+async def register_confirm(message: Message, state: FSMContext, db: Database) -> None:
     await state.clear()
 
     await db.user.new(
