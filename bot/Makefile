@@ -21,16 +21,16 @@ check-fix:
 
 # Generate a new Alembic migration script
 migration:
-	python alembic revision --autogenerate -m "$(NAME)"
+	alembic revision --autogenerate -m "$(NAME)"
 
 # Apply database migrations with Alembic
 migrate-up:
-	python alembic upgrade head
+	alembic upgrade head
 
 # Revert the database by one step with Alembic
 migrate-down:
-	python alembic downgrade -1
+	alembic downgrade -1
 
 # Run the project, ensuring that migrations are applied first
 run: migrate-up
-	python run.py
+	poetry run python run.py
