@@ -33,4 +33,4 @@ migrate-down:
 
 # Run the project, ensuring that migrations are applied first
 run: migrate-up
-	poetry run python run.py
+	python run.py
