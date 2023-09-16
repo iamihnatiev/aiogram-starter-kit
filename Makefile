@@ -18,13 +18,21 @@ bot-lock:
 	cd docker/ && docker compose run --rm bot make lock
 
 # Start the project
-project-start:
+compose-up:
 	cd docker/ && docker compose up
 
+# Start the project with specific profiles
+compose-up-profiles:
+	cd docker/ && docker compose --profile debug up
+
 # Stop the project
-project-stop:
+compose-down:
 	cd docker/ && docker compose down
 
+# Stop the project with specific profiles
+compose-down-profiles:
+	cd docker/ && docker compose --profile debug down
+
 # Build the project
-project-build:
+compose-build:
 	cd docker/ && docker compose build
