@@ -1,0 +1,13 @@
+services:
+  # Bot application service
+  bot:
+    build:
+      target: local
+
+  # Adminer service for managing databases
+  adminer:
+    ports:
+      - "8080:8080"
+    image: adminer:latest
+    depends_on:
+      - postgres-db

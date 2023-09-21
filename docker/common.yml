@@ -7,12 +7,11 @@ services:
     build:
       context: ..
       dockerfile: docker/images/bot/Dockerfile
-      target: local
     env_file:
       - ../bot/.env
     volumes:
       - ../bot:/opt/bot
-    command: ["make", "run"]
+    command: [ "make", "run" ]
     depends_on:
       - postgres-db
       - redis-db
@@ -33,16 +32,7 @@ services:
     volumes:
       - redis_data:/data:rw
 
-  # Adminer service for managing databases
-  adminer:
-    ports:
-      - "8080:8080"
-    image: adminer:latest
-    depends_on:
-      - postgres-db
-    profiles:
-      - debug
-
+# Define named volumes for data persistence
 volumes:
   postgres_data:
   redis_data:

@@ -17,22 +17,18 @@ bot-check-fix:
 bot-lock:
 	cd docker/ && docker compose run --rm bot make lock
 
-# Start the project
+# Start Docker containers for local development
 compose-up:
-	cd docker/ && docker compose up
+	cd docker/ && docker compose -f common.yml -f local.yml up
 
-# Start the project with specific profiles
-compose-up-profiles:
-	cd docker/ && docker compose --profile debug up
-
-# Stop the project
+# Stop and remove Docker containers for local development
 compose-down:
-	cd docker/ && docker compose down
+	cd docker/ && docker compose -f common.yml -f local.yml down
 
-# Stop the project with specific profiles
-compose-down-profiles:
-	cd docker/ && docker compose --profile debug down
+# Start Docker containers for live environment
+compose-up-live:
+	cd docker/ && docker compose -f common.yml -f live.yml up
 
-# Build the project
-compose-build:
-	cd docker/ && docker compose build
+# Stop and remove Docker containers for live environment
+compose-down-live:
+	cd docker/ && docker compose -f common.yml -f live.yml down

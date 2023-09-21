@@ -1,0 +1,5 @@
+services:
+  # Bot application service
+  bot:
+    build:
+      target: live

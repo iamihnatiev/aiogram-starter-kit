@@ -22,11 +22,11 @@ class DatabaseConfig:
         build_connection_url(): Build a connection URL string based on the configuration.
     """
 
-    username: str = config("POSTGRES_USER")
-    password: str = config("POSTGRES_PASSWORD")
-    host: str = config("POSTGRES_HOST")
-    port: int = config("POSTGRES_PORT", cast=int)
-    database: str = config("POSTGRES_DB")
+    username: str = config("BOT_POSTGRES_USER")
+    password: str = config("BOT_POSTGRES_PASSWORD")
+    host: str = config("BOT_POSTGRES_HOST")
+    port: int = config("BOT_POSTGRES_PORT", cast=int)
+    database: str = config("BOT_POSTGRES_DB")
 
     database_system: str = "postgresql"
     driver: str = "asyncpg"
@@ -59,9 +59,9 @@ class RedisConfig:
         db (int): The Redis database number.
     """
 
-    host: str = config("REDIS_HOST")
-    port: int = config("REDIS_PORT", cast=int)
-    db: int = config("REDIS_DB", cast=int)
+    host: str = config("BOT_REDIS_HOST")
+    port: int = config("BOT_REDIS_PORT", cast=int)
+    db: int = config("BOT_REDIS_DB", cast=int)
 
 
 @dataclass
@@ -88,7 +88,7 @@ class Config:
         bot (BotConfig): Bot configuration.
     """
 
-    debug: bool = config("DEBUG", cast=bool)
+    debug: bool = config("BOT_DEBUG", cast=bool)
 
     db = DatabaseConfig()
     redis = RedisConfig()
