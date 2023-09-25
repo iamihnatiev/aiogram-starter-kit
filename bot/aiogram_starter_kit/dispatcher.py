@@ -5,7 +5,7 @@ from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.fsm.strategy import FSMStrategy
 from redis.asyncio.client import Redis
 
-from aiogram_starter_kit.handlers import routers
+from aiogram_starter_kit.logic import routers
 from aiogram_starter_kit.middlewares import DatabaseMiddleware
 
 

@@ -1,8 +1,8 @@
 from aiogram.filters import BaseFilter
 from aiogram.types import Message
 
-from aiogram_starter_kit.db import Database
-from aiogram_starter_kit.enums import Role
+from aiogram_starter_kit.structures.enums import Role
+from db import Database
 
 
 class AdminFilter(BaseFilter):

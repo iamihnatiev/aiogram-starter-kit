@@ -1,7 +1,7 @@
 from sqlalchemy import BigInteger, Enum, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from aiogram_starter_kit.enums import Gender, Role
+from aiogram_starter_kit.structures.enums import Gender, Role
 
 from .base import BaseEntity
 

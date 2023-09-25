@@ -4,7 +4,7 @@ from typing import Any, Generic, Optional, Type, TypeVar
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from aiogram_starter_kit.db.entities import BaseEntity
+from db.entities import BaseEntity
 
 
 TEntity = TypeVar("TEntity", bound=BaseEntity)
@@ -73,6 +73,18 @@ class Repository(Generic[TEntity]):
         if order_by:
             statement = statement.order_by(order_by)
 
+        result = await self.session.execute(statement)
+
+        return result.scalars().all()
+
+    async def get_all(self) -> Sequence[TEntity]:
+        """
+        Retrieve all entities of the specified type from the database.
+
+        Returns:
+            Sequence[TEntity]: A list of all retrieved entities.
+        """
+        statement = select(self.entity)
         result = await self.session.execute(statement)
 
         return result.scalars().all()

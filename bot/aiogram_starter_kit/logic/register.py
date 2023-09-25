@@ -2,16 +2,16 @@ from aiogram import F, Router
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
-from aiogram_starter_kit.common import text
-from aiogram_starter_kit.db import Database
-from aiogram_starter_kit.keyboards import USER_MENU_KB
-from aiogram_starter_kit.states import RegisterStates
+from aiogram_starter_kit.keyboards import USER_KB
+from aiogram_starter_kit.structures.states import RegisterStates
+from aiogram_starter_kit.utils import constants
+from db import Database
 
 
 register_router = Router(name="register")
 
 
-@register_router.message(F.text == text.REGISTER_CONFIRM, RegisterStates.confirm)
+@register_router.message(F.text == constants.REGISTER_CONFIRM, RegisterStates.confirm)
 async def register_confirm(message: Message, state: FSMContext, db: Database) -> None:
     await state.clear()
 
@@ -24,5 +24,5 @@ async def register_confirm(message: Message, state: FSMContext, db: Database) ->
 
     await message.answer(
         text="Congratulations! You have successfully completed the registration process.",
-        reply_markup=USER_MENU_KB,
+        reply_markup=USER_KB,
     )

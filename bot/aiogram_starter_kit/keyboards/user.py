@@ -3,7 +3,7 @@ from aiogram.types import KeyboardButton, ReplyKeyboardMarkup, WebAppInfo
 
 web_app = WebAppInfo(url="https://ihnatiev.com/aiogram-starter-kit/web-app/")
 
-USER_MENU_KB = ReplyKeyboardMarkup(
+USER_KB = ReplyKeyboardMarkup(
     keyboard=[
         [
             KeyboardButton(text="Website", web_app=web_app),

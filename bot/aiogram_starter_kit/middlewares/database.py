@@ -5,8 +5,8 @@ from aiogram import BaseMiddleware
 from aiogram.types import CallbackQuery, Message
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from aiogram_starter_kit.db import Database
-from aiogram_starter_kit.dtos import DatabaseDTO
+from aiogram_starter_kit.structures.dtos import DatabaseDTO
+from db import Database
 
 
 class DatabaseMiddleware(BaseMiddleware):

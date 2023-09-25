@@ -1,7 +1,7 @@
 from aiogram.filters import BaseFilter
 from aiogram.types import Message
 
-from aiogram_starter_kit.db import Database
+from db import Database
 
 
 class RegisterFilter(BaseFilter):

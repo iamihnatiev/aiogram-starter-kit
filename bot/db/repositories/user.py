@@ -3,8 +3,8 @@ from typing import Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from aiogram_starter_kit.db.entities import User
-from aiogram_starter_kit.enums import Gender, Role
+from aiogram_starter_kit.structures.enums import Gender, Role
+from db.entities import User
 
 from .abstract import Repository
 

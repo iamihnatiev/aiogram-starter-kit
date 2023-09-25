@@ -8,7 +8,7 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from aiogram_starter_kit.configuration import conf
-from aiogram_starter_kit.db import BaseEntity
+from db import BaseEntity
 
 
 # this is the Alembic Config object, which provides

@@ -4,8 +4,8 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
 from aiogram_starter_kit.filters import RegisterFilter
-from aiogram_starter_kit.keyboards import REGISTER_CONFIRM_KB, USER_MENU_KB
-from aiogram_starter_kit.states import RegisterStates
+from aiogram_starter_kit.keyboards import REGISTER_CONFIRM_KB, USER_KB
+from aiogram_starter_kit.structures.states import RegisterStates
 
 
 start_router = Router(name="start")
@@ -21,5 +21,5 @@ async def start_wo_register(message: Message, state: FSMContext) -> None:
 async def start_w_register(message: Message) -> None:
     await message.answer(
         text=f"Welcome back, {html.bold(message.from_user.first_name)}.",
-        reply_markup=USER_MENU_KB,
+        reply_markup=USER_KB,
     )

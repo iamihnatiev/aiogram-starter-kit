@@ -2,7 +2,7 @@ from typing import TypedDict
 
 from sqlalchemy.ext.asyncio import AsyncEngine
 
-from aiogram_starter_kit.db import Database
+from db import Database
 
 
 class DatabaseDTO(TypedDict):

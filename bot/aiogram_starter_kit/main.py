@@ -2,12 +2,11 @@ from aiogram import Bot
 from aiogram.enums import ParseMode
 from redis.asyncio.client import Redis
 
-from aiogram_starter_kit.db.database import get_engine
+from aiogram_starter_kit.configuration import conf
 from aiogram_starter_kit.dispatcher import get_dispatcher, get_redis_storage
-from aiogram_starter_kit.dtos import DatabaseDTO
+from aiogram_starter_kit.structures.dtos import DatabaseDTO
 from aiogram_starter_kit.utils import set_ui_commands
-
-from .configuration import conf
+from db.database import get_engine
 
 
 async def start_bot() -> None:
