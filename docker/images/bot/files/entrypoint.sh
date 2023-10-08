@@ -56,5 +56,8 @@ END
 # Indicate that PostgreSQL is now available
 >&2 echo 'PostgreSQL is now available.'
 
+# Apply database migrations with Alembic
+alembic upgrade head
+
 # Execute the provided command (if any)
 exec "$@"

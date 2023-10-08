@@ -7,11 +7,19 @@ services:
     build:
       context: ..
       dockerfile: docker/images/bot/Dockerfile
-    env_file:
-      - ../bot/.env
+    environment:
+      BOT_POSTGRES_USER: ${BOT_POSTGRES_USER:?err}
+      BOT_POSTGRES_PASSWORD: ${BOT_POSTGRES_PASSWORD:?err}
+      BOT_POSTGRES_PORT: ${BOT_POSTGRES_PORT:?err}
+      BOT_POSTGRES_DB: ${BOT_POSTGRES_DB:?err}
+      BOT_REDIS_HOST: ${BOT_REDIS_HOST:?err}
+      BOT_REDIS_PORT: ${BOT_REDIS_PORT:?err}
+      BOT_REDIS_DB: ${BOT_REDIS_DB:?err}
+      BOT_DEBUG: ${BOT_DEBUG:-False}
+      BOT_TOKEN: ${BOT_TOKEN:?err}
     volumes:
       - ../bot:/opt/bot
-    command: [ "make", "run" ]
+    command: [ "python", "run.py" ]
     depends_on:
       - postgres-db
       - redis-db
@@ -19,9 +27,9 @@ services:
   # PostgreSQL database service
   postgres-db:
     environment:
-      POSTGRES_USER: postgres_user
-      POSTGRES_PASSWORD: postgres_password
-      POSTGRES_DB: postgres_db
+      POSTGRES_USER: ${BOT_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${BOT_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${BOT_POSTGRES_DB}
     image: postgres:15.4-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data:rw
