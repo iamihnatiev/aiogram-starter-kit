@@ -1,7 +1,7 @@
 # Use a single shell for all targets
 .ONESHELL:
 
-_compose_local = cd docker/ && docker compose --env-file ../bot/.env
+_compose_local = docker compose --env-file bot/.env
 
 # Start an interactive Bash shell
 shell:
@@ -21,20 +21,20 @@ lock:
 
 # Render the actual data model to be applied on the Docker engine
 compose-config:
-	$(_compose_local) -f common.yml -f local.yml config
+	$(_compose_local) -f docker/common.yml -f docker/local.yml config
 
 # Start Docker containers for local development
 compose-up:
-	@$(_compose_local) -f common.yml -f local.yml up -d
+	@$(_compose_local) -f docker/common.yml -f docker/local.yml up -d
 
 # Stop and remove Docker containers for local development
 compose-down:
-	@$(_compose_local) -f common.yml -f local.yml down
+	@$(_compose_local) -f docker/common.yml -f docker/local.yml down
 
 # Start Docker containers for live environment
 compose-up-live:
-	@$(_compose_local) -f common.yml -f live.yml up -d
+	@$(_compose_local) -f docker/common.yml -f docker/live.yml up -d
 
 # Stop and remove Docker containers for live environment
 compose-down-live:
-	@$(_compose_local) -f common.yml -f live.yml down
+	@$(_compose_local) -f docker/common.yml -f docker/live.yml down
