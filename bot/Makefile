@@ -15,7 +15,7 @@ check:
 	&& ruff check . \
 
 # Automatically fix code formatting and apply project-specific fixes
-check-fix:
+format:
 	black .
 	ruff check . --fix-only --show-fixes --statistics
 
