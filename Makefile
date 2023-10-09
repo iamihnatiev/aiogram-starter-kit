@@ -19,6 +19,10 @@ format:
 lock:
 	@$(_compose_local) run --rm bot make lock
 
+# Render the actual data model to be applied on the Docker engine
+compose-config:
+	$(_compose_local) -f common.yml -f local.yml config
+
 # Start Docker containers for local development
 compose-up:
 	@$(_compose_local) -f common.yml -f local.yml up -d
@@ -34,6 +38,3 @@ compose-up-live:
 # Stop and remove Docker containers for live environment
 compose-down-live:
 	@$(_compose_local) -f common.yml -f live.yml down
-
-compose-config:
-	$(_compose_local) -f common.yml -f local.yml config
