@@ -21,7 +21,7 @@ lock:
 
 # Render the actual data model to be applied on the Docker engine
 compose-config:
-	$(_compose_local) -f docker/common.yml -f docker/local.yml config
+	@$(_compose_local) -f docker/common.yml -f docker/local.yml config
 
 # Start Docker containers for local development
 compose-up:
