@@ -99,9 +99,8 @@ class Repository(Generic[TEntity]):
         Returns:
             TEntity: The added entity.
         """
-        async with self.session.begin():
-            self.session.add(record)
-            await self.session.flush()
+        self.session.add(record)
+        await self.session.commit()
 
         return record
 
@@ -115,9 +114,8 @@ class Repository(Generic[TEntity]):
         Returns:
             TEntity: The updated entity.
         """
-        async with self.session.begin():
-            await self.session.merge(record)
-            await self.session.flush()
+        await self.session.merge(record)
+        await self.session.commit()
 
         return record
 
